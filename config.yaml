@@ -10,6 +10,3 @@ system_prompt: "You are a helpful, concise voice assistant. Keep answers short a
 # Fallback / engagement behavior
 fallback_timeout_sec: 1.3      # trigger filler audio if no first sentence by this point
 
-# Online fallback (disabled by default — fully offline)
-enable_online_fallback: false
-online_llm_model: "your-hosted-model"

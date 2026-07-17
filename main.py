@@ -26,21 +26,6 @@ def load_config(path: str = "config.yaml") -> dict:
         return {}
 
 
-def build_online_fallbacks(config: dict):
-    """Only instantiate online modules if enabled in config, so the
-    system runs fully offline by default with no API keys required."""
-    if not config.get("enable_online_fallback", False):
-        return None, None, None
-
-    from asr.online_whisper import OnlineWhisperTranscriber
-    from llm.online_api import OnlineAPIResponder
-    from tts.online_tts import OnlineTTSSynthesizer
-
-    return (
-        OnlineWhisperTranscriber(),
-        OnlineAPIResponder(model=config.get("online_llm_model", "your-hosted-model")),
-        OnlineTTSSynthesizer(),
-    )
 
 
 def main():
@@ -62,17 +47,12 @@ def main():
         piper_exe_path=config.get("piper_exe_path", "piper/piper.exe"),
     )
 
-    online_transcriber, online_responder, online_synthesizer = build_online_fallbacks(config)
-
     orchestrator = Orchestrator(
         transcriber=transcriber,
         responder=responder,
         synthesizer=synthesizer,
         capture=capture,
         playback=playback,
-        online_transcriber=online_transcriber,
-        online_responder=online_responder,
-        online_synthesizer=online_synthesizer,
         fallback_timeout=config.get("fallback_timeout_sec", 1.3),
     )
 

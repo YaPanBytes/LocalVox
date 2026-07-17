@@ -20,18 +20,12 @@ SENTENCE_END_RE = re.compile(r"(?<=[.!?])\s+")
 
 class Orchestrator:
     def __init__(self, transcriber, responder, synthesizer, capture, playback,
-                 online_transcriber=None, online_responder=None, online_synthesizer=None,
                  fallback_timeout: float = 1.3):
         self.transcriber = transcriber
         self.responder = responder
         self.synthesizer = synthesizer
         self.capture = capture
         self.playback = playback
-
-        # Optional online fallbacks — if None, local failures just raise
-        self.online_transcriber = online_transcriber
-        self.online_responder = online_responder
-        self.online_synthesizer = online_synthesizer
 
         self.session = Session()
         self.fallback = FallbackHandler(playback, timeout_sec=fallback_timeout)
