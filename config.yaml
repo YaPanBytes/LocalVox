@@ -1,0 +1,15 @@
+# Model choices
+whisper_model: "base"          # tiny | base | small | medium
+whisper_device: "cuda"         # cuda | cpu  (MX450: keep ASR on GPU)
+llm_model: "llama3.2:1b"       # served via Ollama, runs on CPU
+piper_voice_path: "models/piper_voices/en_US-lessac-medium.onnx"
+piper_exe_path: "piper/piper.exe"    # relative to where you run main.py from
+
+system_prompt: "You are a helpful, concise voice assistant. Keep answers short and natural for speech."
+
+# Fallback / engagement behavior
+fallback_timeout_sec: 1.3      # trigger filler audio if no first sentence by this point
+
+# Online fallback (disabled by default — fully offline)
+enable_online_fallback: false
+online_llm_model: "your-hosted-model"
