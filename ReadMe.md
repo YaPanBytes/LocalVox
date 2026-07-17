@@ -1,9 +1,8 @@
-# Voice Assistant (Offline-First, Online Fallback)
+# Voice Assistant (Offline)
 
-A real-time, audio-in/audio-out conversational assistant that keeps
-end-to-end response latency close to 2 seconds, runs fully offline by
-default, and never leaves the user with dead air or a generic error if a
-response is slow.
+A real-time, audio-in/audio-out conversational assistant that runs fully
+offline, keeps end-to-end response latency close to 2 seconds, and never
+leaves the user with dead air or a generic error if a response is slow.
 
 ## Setup
 
@@ -130,16 +129,11 @@ Filler clips are generated once, offline, via `scripts/generate_fillers.py`
 PCM in `assets/fillers/`. Nothing about the fallback path requires network
 access or live generation.
 
-### Local-first, online as documented-only fallback
+### Offline-only, by design
 
-Per the assignment's stated preference for offline implementations, and
-since offline proved fully feasible on the test hardware, **online fallback
-was scoped out of the implementation**. The interface layer for it still
-exists (`asr/online_whisper.py`, `llm/online_api.py`, `tts/online_tts.py`,
-each implementing the same interface as their local counterparts), so
-swapping in an online provider would only require filling in the API call —
-no architectural changes — but this wasn't necessary given the offline
-system consistently met the latency target.
+Per the assignment's stated preference for an offline implementation, and
+since offline proved fully feasible on the test hardware, this system was
+built as offline-only — no online fallback path was implemented.
 
 ### Hardware / model sizing decisions
 
