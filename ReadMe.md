@@ -4,6 +4,9 @@ A real-time, audio-in/audio-out conversational assistant that runs fully
 offline, keeps end-to-end response latency close to 2 seconds, and never
 leaves the user with dead air or a generic error if a response is slow.
 
+# Working Demo Video
+https://drive.google.com/file/d/1y9Ibj9zWD4PZ7_oZLfqItw3AZhwCe9fk/view?usp=sharing
+
 ## Setup
 
 1. Install Python dependencies:
